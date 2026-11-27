@@ -18,7 +18,24 @@ const Taskbar = ({ windows, onRestore }) => {
     return () => clearInterval(interval);
   }, []);
 
-  return <div>Taskbar</div>;
+  return (
+    <>
+      <div className="taskbar">
+        <div className="taskbar-apps">
+          {windows.map((w) => (
+            <button
+              key={w.id}
+              className={`taskbar-btn ${w.minimized ? "minimized" : ""}`}
+              onClick={() => onRestore(w.id)}
+            >
+              {w.icon} {w.label}
+            </button>
+          ))}
+        </div>
+        <div className="taskbar-clock">{time}</div>
+      </div>
+    </>
+  );
 };
 
 export default Taskbar;
