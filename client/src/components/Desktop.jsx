@@ -15,16 +15,16 @@ const Desktop = () => {
     restoreWindow,
   } = useWindowManager();
 
-  const handleRestore = (id) => {
-    focusWindow(id);
-    // rimuovi minimized dallo state
-    // lo gestiamo tramite un'azione dedicata nel hook
-  };
-
   return (
-    <div className="desktop">
+    <div
+      className="relative w-screen h-screen overflow-hidden"
+      style={{
+        background:
+          "linear-gradient(135deg, #c8a97e 0%, #e8c99a 30%, #d4956a 60%, #8b6f47 100%)",
+      }}
+    >
       {/* Icone */}
-      <div className="desktop-icons">
+      <div className="absolute top-6 left-6 flex flex-col gap-6">
         {appsConfig.map((app) => (
           <DesktopIcon key={app.id} app={app} onClick={openWindow} />
         ))}
