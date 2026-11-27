@@ -41,7 +41,22 @@ const useWindowManager = () => {
     );
   };
 
-  return { windows, openWindow, closeWindow, focusWindow, minimizeWindow };
+  const restoreWindow = (id) => {
+    setWindows((prev) =>
+      prev.map((w) =>
+        w.id === id ? { ...w, minimized: false, zIndex: getMaxZ(prev) + 1 } : w,
+      ),
+    );
+  };
+
+  return {
+    windows,
+    openWindow,
+    closeWindow,
+    focusWindow,
+    minimizeWindow,
+    restoreWindow,
+  };
 };
 
 const getMaxZ = (windows) =>
